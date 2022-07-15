@@ -17,8 +17,8 @@ public class SendMailApi {
     @Autowired
     EmailService emailService;
 
+    @CrossOrigin
     @PostMapping("/sendmail")
-    @CrossOrigin()
     private ResponseEntity<ResponseData> sendMailToUser(@RequestBody MailDataToSend mailDataToSend) {
         try {
             emailService.sendHtmlMessage(mailDataToSend.getEmail(), mailDataToSend);
@@ -35,8 +35,8 @@ public class SendMailApi {
     }
 
 
-    @GetMapping("/")
     @CrossOrigin
+    @GetMapping("/")
     private String welcome(){
         return "Welcome to cykle";
     }
