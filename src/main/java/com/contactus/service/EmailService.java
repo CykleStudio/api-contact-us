@@ -11,6 +11,7 @@ import org.thymeleaf.context.Context;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 
 @Service
@@ -29,7 +30,7 @@ public class EmailService {
 
          String bodyofMail = "Hi " + firstName + "\n\n" +  "Welcome to Cykle, we got your mail";
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("business@cykle.studio");
+        simpleMailMessage.setFrom("info@cykle.studio");
         simpleMailMessage.setTo(toEmail);
         simpleMailMessage.setSubject("We got your mail!");
         simpleMailMessage.setText(bodyofMail);
@@ -55,7 +56,7 @@ public class EmailService {
 
 
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("business@cykle.studio");
+        simpleMailMessage.setFrom("info@cykle.studio");
         simpleMailMessage.setTo(toEmail);
         simpleMailMessage.setSubject("Another Project don land, Bill am");
         simpleMailMessage.setText(bodyofMail);
@@ -64,12 +65,12 @@ public class EmailService {
     }
 
 
-    public void sendHtmlMessage(String toEmail, MailDataToSend email) throws MessagingException {
+    public void sendHtmlMessage(String toEmail, MailDataToSend email) throws MessagingException, UnsupportedEncodingException {
         MimeMessage message = javaMailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED, StandardCharsets.UTF_8.name());
         Context context = new Context();
 
-        helper.setFrom("business@cykle.studio");
+        helper.setFrom("info@cykle.studio","Cykle Studio");
         helper.setTo(toEmail);
         helper.setSubject("Thank you for reaching out!");
         String html = springTemplateEngine.process("template.html", context);

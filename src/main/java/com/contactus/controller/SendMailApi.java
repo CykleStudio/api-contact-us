@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import java.io.UnsupportedEncodingException;
 
 @RestController
 public class SendMailApi {
@@ -25,7 +26,7 @@ public class SendMailApi {
             emailService.sendEmailToAdmin("cykle.products@gmail.com", mailDataToSend);
         } catch (NullPointerException exception) {
             exception.getMessage();
-        } catch (MessagingException e) {
+        } catch (MessagingException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
 
